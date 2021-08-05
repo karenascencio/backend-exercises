@@ -1,0 +1,19 @@
+{
+  "name": "sessiontwo",
+  "version": "1.0.0",
+  "description": "my fist project",
+  "main": "index.js",
+  "scripts": {
+    "iniciar": " echo 'Hola desde script'; echo 'este es otro echo'"
+  },
+  "keywords": [
+    "kodemia",
+    "class",
+    "node-intro"
+  ],
+  "author": "Karen Ascencio",
+  "license": "ISC",
+  "dependencies": {
+    "moment": "^2.29.1"
+  }
+}
