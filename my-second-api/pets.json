@@ -1,0 +1,12 @@
+{
+    "pets": [
+        {
+            "name": "Gloria",
+            "type": "Tuxedo Cat"
+        },
+        {
+            "name": "Hamtaro",
+            "type": "Hamster"
+        }
+    ]
+}
