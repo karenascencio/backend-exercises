@@ -19,28 +19,32 @@ server.get('/', (request, response) => {
 })
 
 server.get('/koders', async (request, response) => {
-    const {name, lastName, gender, age} = request.query
-    let filteredKoders = {}
+    const {name, lastName, gender, age, generation} = request.query
+    let filters = {}
     
-    if (name) {
-        filteredKoders = await Koder.find({ name: { $eq: name }})
-    }
+    // if (name) {
+    //     filteredKoders = await Koder.find({ name: { $eq: name }})
+    // }
 
-    if (lastName) {
-        filteredKoders = await Koder.find({ lastName: { $eq: lastName }})
-    }
+    // if (lastName) {
+    //     filteredKoders = await Koder.find({ lastName: { $eq: lastName }})
+    // }
 
-    if (gender) {
-        filteredKoders = await Koder.find({ gender: { $eq: gender }})
-    }
+    // if (gender) {
+    //     filteredKoders = await Koder.find({ gender: gender })
+    // }
 
-    if (age) {
-        filteredKoders = await Koder.find({ age: { $eq: age }})
-    }
+    // if (age) {
+    //     filteredKoders = await Koder.find({ age: { $eq: age }})
+    // }
 
-    else {
-        filteredKoders = await Koder.find()
-    }
+    // if (generation) {
+    //     filteredKoders = await Koder.find({ generation: { $eq: generation }})
+    // }
+
+    // else {
+    //     filteredKoders = await Koder.find()
+    // }
     
     response.json({
         success: true,
@@ -52,18 +56,25 @@ server.get('/koders', async (request, response) => {
 })
 
 server.post('/koders', async (request, response) => {
-    const newKoder = request.body
-    const dbFile = await Koder.find()
+    try{
+        const newKoder = request.body
 
-    const koderCreated = await Koder.create(newKoder)
+        const koderCreated = await Koder.create(newKoder)
 
-    response.json({
-        message: 'Successfully created!',
-        newKoder: newKoder,
-        dbFile: dbFile
-    })
-    
-
+        response.json({
+            message: 'Successfully created!',
+            data: {
+                koder: koderCreated
+            }
+        })
+    }
+    catch (error) {
+        response.status(400)
+        response.json({
+            success: false,
+            message: error.message
+        })
+    }
 })
 
 mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true})
